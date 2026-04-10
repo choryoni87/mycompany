@@ -1,26 +1,108 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --void: #000000;
+  --deep-teal: #02090a;
+  --dark-forest: #061a1c;
+  --forest: #102620;
+  --card-border: #1e2c31;
+  --neon-green: #36f4a4;
+  --muted: #a1a1aa;
+  --shade-50: #71717a;
+  --shade-70: #3f3f46;
+  --foreground: #ffffff;
 }
 
 @theme inline {
-  --color-background: var(--background);
+  --color-void: var(--void);
+  --color-deep-teal: var(--deep-teal);
+  --color-dark-forest: var(--dark-forest);
+  --color-forest: var(--forest);
+  --color-card-border: var(--card-border);
+  --color-neon-green: var(--neon-green);
+  --color-muted: var(--muted);
+  --color-shade-50: var(--shade-50);
+  --color-shade-70: var(--shade-70);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  scroll-behavior: smooth;
 }
 
 body {
-  background: var(--background);
+  background-color: var(--void);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  font-feature-settings: "ss03" 1;
+}
+
+/* Display / hero: ethereal lightweights on Helvetica-style stack (design.md fallback) */
+.font-display {
+  font-family:
+    "Helvetica Neue",
+    Helvetica,
+    Arial,
+    ui-sans-serif,
+    sans-serif;
+  font-feature-settings: "ss03" 1;
+  font-weight: 300;
+  letter-spacing: 0.02em;
+}
+
+.page-gradient {
+  background-color: var(--void);
+  background-image:
+    radial-gradient(
+      ellipse 120% 80% at 50% -20%,
+      rgba(16, 38, 32, 0.55) 0%,
+      transparent 55%
+    ),
+    radial-gradient(
+      ellipse 90% 60% at 100% 50%,
+      rgba(6, 26, 28, 0.35) 0%,
+      transparent 45%
+    );
+}
+
+/* design.md §4 Cards — stacked shadow + inset top glow */
+.card-surface {
+  background-color: var(--deep-teal);
+  border: 1px solid var(--card-border);
+  border-radius: 12px;
+  box-shadow:
+    rgba(0, 0, 0, 0.1) 0 0 0 1px,
+    rgba(0, 0, 0, 0.1) 0 2px 2px,
+    rgba(0, 0, 0, 0.1) 0 4px 4px,
+    rgba(0, 0, 0, 0.1) 0 8px 8px,
+    rgba(255, 255, 255, 0.03) 0 1px 0 inset;
+  transition:
+    box-shadow 300ms ease,
+    transform 200ms ease;
+}
+
+.card-surface:hover {
+  box-shadow:
+    rgba(0, 0, 0, 0.12) 0 0 0 1px,
+    rgba(0, 0, 0, 0.12) 0 4px 6px,
+    rgba(0, 0, 0, 0.1) 0 8px 12px,
+    rgba(0, 0, 0, 0.08) 0 16px 24px,
+    rgba(255, 255, 255, 0.04) 0 1px 0 inset;
+}
+
+/* Badge (frosted) */
+.badge-frost {
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 4px;
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  line-height: 1.5;
+}
+
+/* Focus ring — Neon Green (precious accent) */
+a:focus-visible,
+button:focus-visible {
+  outline: 2px solid var(--neon-green);
+  outline-offset: 2px;
 }
